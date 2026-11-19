@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>XMAXIFY Mobile Portal — Owner Live Dashboard</title>
+  <meta name="theme-color" content="#070d19">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              green: '#00c274',
+              navy: '#070d19',
+              card: '#0f1a2e',
+              border: '#1c2d4a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #060a12;
+      color: #f1f5f9;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .mobile-card {
+      background: linear-gradient(145deg, rgba(15, 26, 46, 0.85) 0%, rgba(10, 18, 33, 0.95) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+    }
+    .active-nav {
+      color: #00c274;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body class="pb-24 antialiased selection:bg-brand-green selection:text-slate-950">
+
+  <!-- Mobile Top Header -->
+  <div class="sticky top-0 z-40 bg-[#060a12]/90 backdrop-blur-md border-b border-slate-800/80 px-5 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-brand-green/20 border border-brand-green/40 flex items-center justify-center font-bold text-brand-green font-display">
+        X
+      </div>
+      <div>
+        <div class="font-display font-extrabold text-base tracking-wider text-white flex items-center gap-2">
+          <span>XMAXIFY PORTAL</span>
+          <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
+        </div>
+        <div class="text-[10px] text-slate-400">Owner: Atif Mahmood</div>
+      </div>
+    </div>
+
+    <!-- EasyPaisa Balance Quick Tag -->
+    <div class="bg-emerald-950/70 border border-brand-green/40 px-3 py-1.5 rounded-full flex items-center gap-2">
+      <span class="text-[10px] text-slate-300 font-bold">EasyPaisa:</span>
+      <span class="text-xs font-black text-brand-green font-mono" id="topBalance">Rs 55,000</span>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="p-4 max-w-md mx-auto space-y-5">
+
+    <!-- ================= TAB 1: DAILY REPORT ================= -->
+    <div id="tab-report" class="tab-content active space-y-4">
+      
+      <!-- Date Banner -->
+      <div class="flex items-center justify-between text-xs text-slate-400 px-1">
+        <span class="font-bold text-white flex items-center gap-1.5">
+          <i data-lucide="calendar" class="w-4 h-4 text-brand-green"></i>
+          Today's Automated Operations
+        </span>
+        <span class="bg-slate-800 text-slate-300 px-2.5 py-0.5 rounded-full text-[10px] font-mono">Live Sync</span>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="grid grid-cols-2 gap-3">
+        
+        <!-- Metric 1: Cash in Easypaisa -->
+        <div class="mobile-card p-4 rounded-2xl border-l-4 border-l-brand-green">
+          <div class="text-[11px] text-slate-400 font-medium">EasyPaisa In (Today)</div>
+          <div class="text-xl font-black text-white font-display mt-1">Rs 31,500</div>
+          <div class="text-[10px] text-brand-green font-bold mt-1 flex items-center gap-1">
+            <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+            2 Advance Deposits
+          </div>
+        </div>
+
+        <!-- Metric 2: Deals Closed -->
+        <div class="mobile-card p-4 rounded-2xl border-l-4 border-l-sky-400">
+          <div class="text-[11px] text-slate-400 font-medium">Deals Closed</div>
+          <div class="text-xl font-black text-white font-display mt-1">2 Deals</div>
+          <div class="text-[10px] text-sky-400 font-bold mt-1">
+            Total Value: Rs 63,000
+          </div>
+        </div>
+
+        <!-- Metric 3: Social Videos Uploaded -->
+        <div class="mobile-card p-4 rounded-2xl border-l-4 border-l-purple-400">
+          <div class="text-[11px] text-slate-400 font-medium">AI Videos Posted</div>
+          <div class="text-xl font-black text-white font-display mt-1">5 Videos</div>
+          <div class="text-[10px] text-purple-400 font-bold mt-1">
+            TikTok, Reels, Shorts
+          </div>
+        </div>
+
+        <!-- Metric 4: WhatsApp Leads Active -->
+        <div class="mobile-card p-4 rounded-2xl border-l-4 border-l-amber-400">
+          <div class="text-[11px] text-slate-400 font-medium">Outreach Leads</div>
+          <div class="text-xl font-black text-white font-display mt-1">28 Leads</div>
+          <div class="text-[10px] text-amber-400 font-bold mt-1">
+            9 In Negotiation
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Verified Easypaisa Account Details -->
+      <div class="mobile-card p-4 rounded-2xl border border-brand-green/30 space-y-2">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-300">
+          <span class="flex items-center gap-2 text-brand-green">
+            <i data-lucide="shield-check" class="w-4 h-4"></i>
+            Primary EasyPaisa Account
+          </span>
+          <span class="text-[10px] bg-brand-green/20 text-brand-green px-2 py-0.5 rounded">VERIFIED</span>
+        </div>
+        <div class="bg-slate-950/80 p-3 rounded-xl flex items-center justify-between text-xs font-mono">
+          <div>
+            <div class="text-slate-400 text-[10px]">Title: <strong class="text-white">Atif Mahmood</strong></div>
+            <div class="text-white font-bold text-sm">03236150006</div>
+          </div>
+          <button onclick="navigator.clipboard.writeText('03236150006'); alert('Copied: 03236150006');" class="bg-brand-green text-slate-950 text-[10px] font-black px-3 py-1.5 rounded-lg active:scale-95 transition">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <!-- Social Uploaded Content Log -->
+      <div class="mobile-card p-4 rounded-2xl space-y-3">
+        <div class="flex items-center justify-between text-xs font-bold text-white">
+          <span>Social Media Automated Reach</span>
+          <span class="text-brand-green text-[10px]">Updated 10m ago</span>
+        </div>
+
+        <div class="space-y-2 text-xs">
+          <div class="bg-slate-950/60 p-2.5 rounded-xl flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-base">📱</span>
+              <div>
+                <div class="font-bold text-white">TikTok & Instagram Reel #1</div>
+                <div class="text-[10px] text-slate-400">"Why 80% Pakistani websites lose customers"</div>
+              </div>
+            </div>
+            <span class="text-[10px] bg-emerald-950 text-brand-green px-2 py-0.5 rounded font-bold">Uploaded</span>
+          </div>
+
+          <div class="bg-slate-950/60 p-2.5 rounded-xl flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-base">▶️</span>
+              <div>
+                <div class="font-bold text-white">YouTube Shorts #1</div>
+                <div class="text-[10px] text-slate-400">"Shopify COD Slips Automation in Pakistan"</div>
+              </div>
+            </div>
+            <span class="text-[10px] bg-emerald-950 text-brand-green px-2 py-0.5 rounded font-bold">Uploaded</span>
+          </div>
+
+          <div class="bg-slate-950/60 p-2.5 rounded-xl flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-base">💼</span>
+              <div>
+                <div class="font-bold text-white">LinkedIn & Facebook B2B Article</div>
+                <div class="text-[10px] text-slate-400">"Speed Benchmarks for Lahore & Karachi Brands"</div>
+              </div>
+            </div>
+            <span class="text-[10px] bg-emerald-950 text-brand-green px-2 py-0.5 rounded font-bold">Uploaded</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================= TAB 2: EASYPAISA LEDGER ================= -->
+    <div id="tab-easypaisa" class="tab-content space-y-4">
+      <div class="flex items-center justify-between px-1">
+        <h3 class="text-sm font-bold text-white flex items-center gap-2">
+          <i data-lucide="wallet" class="w-4 h-4 text-brand-green"></i>
+          EasyPaisa Inbound Transactions
+        </h3>
+        <span class="text-[10px] text-slate-400">Account: 03236150006</span>
+      </div>
+
+      <!-- Transaction List -->
+      <div class="space-y-3">
+        
+        <!-- Tx 1 -->
+        <div class="mobile-card p-4 rounded-2xl flex items-center justify-between border-l-4 border-l-brand-green">
+          <div>
+            <div class="font-bold text-white text-xs">Hamza Khan (Khan Logistics)</div>
+            <div class="text-[10px] text-slate-400">50% Advance • Business Scale Web</div>
+            <div class="text-[9px] text-slate-500 font-mono mt-0.5">TRX: EP-982341 • Today 11:42 AM</div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm font-black text-brand-green font-display">+Rs 22,500</div>
+            <span class="text-[9px] bg-emerald-950 text-brand-green px-2 py-0.5 rounded font-semibold">VERIFIED</span>
+          </div>
+        </div>
+
+        <!-- Tx 2 -->
+        <div class="mobile-card p-4 rounded-2xl flex items-center justify-between border-l-4 border-l-brand-green">
+          <div>
+            <div class="font-bold text-white text-xs">Bilal Textile Mills Faisalabad</div>
+            <div class="text-[10px] text-slate-400">50% Advance • Starter Landing Page</div>
+            <div class="text-[9px] text-slate-500 font-mono mt-0.5">TRX: EP-842910 • Yesterday</div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm font-black text-brand-green font-display">+Rs 9,000</div>
+            <span class="text-[9px] bg-emerald-950 text-brand-green px-2 py-0.5 rounded font-semibold">VERIFIED</span>
+          </div>
+        </div>
+
+        <!-- Tx 3 -->
+        <div class="mobile-card p-4 rounded-2xl flex items-center justify-between border-l-4 border-l-brand-green">
+          <div>
+            <div class="font-bold text-white text-xs">Dr. Ayesha Dental Clinic Lahore</div>
+            <div class="text-[10px] text-slate-400">50% Advance • Medical Booking Site</div>
+            <div class="text-[9px] text-slate-500 font-mono mt-0.5">TRX: EP-772102 • 17 Nov</div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm font-black text-brand-green font-display">+Rs 22,500</div>
+            <span class="text-[9px] bg-emerald-950 text-brand-green px-2 py-0.5 rounded font-semibold">VERIFIED</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Add Manual Transaction Quick Form -->
+      <div class="mobile-card p-4 rounded-2xl space-y-3">
+        <div class="text-xs font-bold text-white">Manual Payment Logger</div>
+        <div class="space-y-2">
+          <input type="text" id="manualClient" placeholder="Client Name & Company" class="w-full bg-slate-950 text-xs px-3 py-2 rounded-xl border border-slate-800 text-white focus:outline-none focus:border-brand-green">
+          <input type="number" id="manualAmt" placeholder="Amount (PKR, e.g. 22500)" class="w-full bg-slate-950 text-xs px-3 py-2 rounded-xl border border-slate-800 text-white focus:outline-none focus:border-brand-green">
+          <input type="text" id="manualTrx" placeholder="EasyPaisa TRX ID" class="w-full bg-slate-950 text-xs px-3 py-2 rounded-xl border border-slate-800 text-white focus:outline-none focus:border-brand-green">
+          <button onclick="logManualPayment()" class="w-full bg-brand-green hover:bg-emerald-500 text-slate-950 font-black text-xs py-2.5 rounded-xl transition">
+            Log Receipt & Send Alert to 03236150006
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= TAB 3: CLIENT PIPELINE ================= -->
+    <div id="tab-clients" class="tab-content space-y-4">
+      <div class="flex items-center justify-between px-1">
+        <h3 class="text-sm font-bold text-white flex items-center gap-2">
+          <i data-lucide="users" class="w-4 h-4 text-brand-green"></i>
+          Active Deals & WhatsApp Pipeline
+        </h3>
+        <span class="text-[10px] bg-brand-green/20 text-brand-green px-2 py-0.5 rounded">WhatsApp: 03706954308</span>
+      </div>
+
+      <div class="space-y-3">
+        
+        <div class="mobile-card p-4 rounded-2xl space-y-2 border-l-4 border-l-emerald-400">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-white">Luxe Apparel Lahore</span>
+            <span class="text-[10px] bg-emerald-950 text-brand-green px-2 py-0.5 rounded font-bold">50% ADVANCE PAID</span>
+          </div>
+          <div class="text-[11px] text-slate-400">Project: Enterprise Shopify Store (Rs 85,000)</div>
+          <div class="text-[10px] text-slate-500">Milestone 1 Received: Rs 42,500 • Delivery: 3 days left</div>
+        </div>
+
+        <div class="mobile-card p-4 rounded-2xl space-y-2 border-l-4 border-l-amber-400">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-white">Apex Heights Real Estate</span>
+            <span class="text-[10px] bg-amber-950 text-amber-400 px-2 py-0.5 rounded font-bold">CONTRACT ISSUED</span>
+          </div>
+          <div class="text-[11px] text-slate-400">Project: 3D Corporate Website (Rs 45,000)</div>
+          <div class="text-[10px] text-slate-500">Awaiting 50% deposit (Rs 22,500) via EasyPaisa</div>
+        </div>
+
+        <div class="mobile-card p-4 rounded-2xl space-y-2 border-l-4 border-l-sky-400">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-white">TasteBites Karachi Delivery</span>
+            <span class="text-[10px] bg-sky-950 text-sky-400 px-2 py-0.5 rounded font-bold">PITCH AUDIT SENT</span>
+          </div>
+          <div class="text-[11px] text-slate-400">Automated WhatsApp Speed Audit Sent (+92 321 XXXX)</div>
+          <div class="text-[10px] text-slate-500">Client replied: "Audio note sent with requirements"</div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="fixed bottom-0 left-0 right-0 z-50 bg-[#070d19]/95 backdrop-blur-lg border-t border-slate-800/80 px-6 py-2.5 flex items-center justify-around max-w-md mx-auto">
+    <button onclick="switchTab('report', this)" class="flex flex-col items-center gap-1 active-nav text-xs font-medium transition">
+      <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+      <span class="text-[10px]">Daily Report</span>
+    </button>
+    <button onclick="switchTab('easypaisa', this)" class="flex flex-col items-center gap-1 text-slate-400 hover:text-white text-xs font-medium transition">
+      <i data-lucide="wallet" class="w-5 h-5"></i>
+      <span class="text-[10px]">EasyPaisa</span>
+    </button>
+    <button onclick="switchTab('clients', this)" class="flex flex-col items-center gap-1 text-slate-400 hover:text-white text-xs font-medium transition">
+      <i data-lucide="users" class="w-5 h-5"></i>
+      <span class="text-[10px]">Clients</span>
+    </button>
+  </nav>
+
+  <script>
+    lucide.createIcons();
+
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('nav button').forEach(el => {
+        el.classList.remove('active-nav');
+        el.classList.add('text-slate-400');
+      });
+
+      document.getElementById('tab-' + tabId).classList.add('active');
+      btn.classList.add('active-nav');
+      btn.classList.remove('text-slate-400');
+      lucide.createIcons();
+    }
+
+    function logManualPayment() {
+      const client = document.getElementById('manualClient').value;
+      const amt = document.getElementById('manualAmt').value;
+      const trx = document.getElementById('manualTrx').value;
+
+      if (!client || !amt) {
+        alert('Please enter client name and amount');
+        return;
+      }
+
+      alert(`✅ Receipt Generated!\nClient: ${client}\nAmount: Rs ${amt}\nTRX: ${trx || 'Auto'}\nAlert sent to Atif Mahmood (03236150006)`);
+      document.getElementById('manualClient').value = '';
+      document.getElementById('manualAmt').value = '';
+      document.getElementById('manualTrx').value = '';
+    }
+  </script>
+</body>
+</html>
