@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth overflow-x-hidden">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>XMAXIFY — Maximize Your Potential | Premier 3D Digital & Web Studio</title>
   <meta name="description" content="Next-Gen 3D Interactive Web Experiences, High-Converting Shopify E-Commerce, and Growth Engineering for Ambitious Brands.">
 
@@ -28,14 +28,13 @@
           },
           colors: {
             brand: {
-              // Exact Colors from XMAXIFY Logo
               green: '#00c274',
               greenGlow: '#00e676',
               greenDark: '#008f53',
               navy: '#0b162c',
               navyDark: '#060d1b',
               navyLight: '#122244',
-              navyCard: 'rgba(11, 22, 44, 0.75)',
+              navyCard: 'rgba(11, 22, 44, 0.85)',
               navyBorder: '#1a3363',
               royalBlue: '#1e3a8a'
             }
@@ -46,16 +45,16 @@
   </script>
 
   <style>
-    /* ================= 3D & THEME ACCORDING TO LOGO ================= */
-    :root {
-      --color-logo-green: #00c274;
-      --color-logo-navy: #0b162c;
-    }
-    body {
-      background-color: #060d1b; /* Deep Navy from Logo */
+    /* Responsive Spacing & Safe-Area Defaults */
+    html, body {
+      background-color: #060d1b;
       color: #f1f5f9;
+      width: 100%;
+      max-width: 100vw;
       overflow-x: hidden;
-      cursor: default;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     /* Interactive 3D Background Canvas */
@@ -69,7 +68,7 @@
       pointer-events: none;
     }
 
-    /* Custom Interactive Glowing Cursor */
+    /* Custom Interactive Glowing Cursor (Desktop Only) */
     .custom-cursor {
       position: fixed;
       top: 0;
@@ -86,30 +85,33 @@
       mix-blend-mode: screen;
     }
     .custom-cursor.hovered {
-      width: 60px;
-      height: 60px;
+      width: 55px;
+      height: 55px;
       background: rgba(0, 230, 118, 0.35);
       border: 1px solid #00e676;
     }
 
-    /* Glowing Glassmorphism Cards */
+    /* Responsive Glassmorphism Cards */
     .glass-navy-card {
-      background: linear-gradient(135deg, rgba(14, 28, 56, 0.8) 0%, rgba(8, 16, 32, 0.95) 100%);
-      border: 1px solid rgba(26, 51, 99, 0.7);
+      background: linear-gradient(135deg, rgba(14, 28, 56, 0.85) 0%, rgba(8, 16, 32, 0.95) 100%);
+      border: 1px solid rgba(26, 51, 99, 0.75);
       backdrop-filter: blur(16px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s;
-      transform-style: preserve-3d;
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.3s;
     }
-    .glass-navy-card:hover {
-      border-color: #00c274;
-      box-shadow: 0 25px 60px -15px rgba(0, 194, 116, 0.3), 0 0 30px -10px rgba(0, 194, 116, 0.2);
+    @media (hover: hover) and (pointer: fine) {
+      .glass-navy-card:hover {
+        border-color: #00c274;
+        box-shadow: 0 20px 45px -10px rgba(0, 194, 116, 0.3), 0 0 25px -5px rgba(0, 194, 116, 0.2);
+        transform: translateY(-5px);
+      }
     }
 
     /* Rotating Conic Glowing Border Animation */
     .animated-border-box {
       position: relative;
-      border-radius: 1.5rem;
+      border-radius: 1.25rem;
       padding: 1px;
       overflow: hidden;
     }
@@ -127,7 +129,7 @@
     .animated-border-content {
       position: relative;
       background: #091326;
-      border-radius: calc(1.5rem - 1px);
+      border-radius: calc(1.25rem - 1px);
       z-index: 1;
     }
     @keyframes rotateBorder {
@@ -135,13 +137,13 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Floating Levitation Animation */
+    /* Floating Levitation */
     @keyframes float3D {
-      0%, 100% { transform: translateY(0px) rotate3d(1, 1, 0, 0deg); }
-      50% { transform: translateY(-16px) rotate3d(1, 1, 0, 3deg); }
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
     }
     .animate-float-3d {
-      animation: float3D 6s ease-in-out infinite;
+      animation: float3D 5s ease-in-out infinite;
     }
 
     /* Text Glow & Logo Gradients */
@@ -151,27 +153,28 @@
       -webkit-text-fill-color: transparent;
     }
     .arrow-glow {
-      filter: drop-shadow(0 0 16px rgba(0, 194, 116, 0.6));
+      filter: drop-shadow(0 0 14px rgba(0, 194, 116, 0.5));
     }
 
     /* Click Ripple Effect */
     .click-ripple {
       position: absolute;
       border-radius: 50%;
-      background: rgba(0, 194, 116, 0.5);
+      background: rgba(0, 194, 116, 0.45);
       transform: scale(0);
-      animation: rippleAnim 0.6s linear;
+      animation: rippleAnim 0.5s linear;
       pointer-events: none;
     }
     @keyframes rippleAnim {
-      to { transform: scale(4); opacity: 0; }
+      to { transform: scale(3.5); opacity: 0; }
     }
 
     /* Marquee Track */
     .marquee-track {
       display: flex;
-      gap: 3rem;
-      animation: marqueeRun 22s linear infinite;
+      gap: 2rem;
+      width: max-content;
+      animation: marqueeRun 24s linear infinite;
     }
     @keyframes marqueeRun {
       from { transform: translateX(0); }
@@ -179,140 +182,159 @@
     }
   </style>
 </head>
-<body class="selection:bg-brand-green selection:text-slate-950">
+<body class="selection:bg-brand-green selection:text-slate-950 font-sans">
 
-  <!-- Interactive Custom Cursor -->
-  <div class="custom-cursor hidden md:block" id="cursor"></div>
+  <!-- Interactive Custom Cursor (Desktop Only) -->
+  <div class="custom-cursor hidden lg:block" id="cursor"></div>
 
   <!-- 3D Three.js Interactive Canvas -->
   <div id="canvas-container">
     <canvas id="three-canvas"></canvas>
   </div>
 
-  <div class="relative z-10">
+  <div class="relative z-10 w-full overflow-x-hidden">
 
-    <!-- Top Glow Bar with Live Status -->
-    <div class="bg-gradient-to-r from-brand-navyDark via-brand-navy to-brand-navyDark border-b border-brand-green/20 py-2.5 px-4 text-center text-xs text-slate-300 flex items-center justify-center gap-3">
-      <span class="flex h-2.5 w-2.5 relative">
+    <!-- Top Announcement Bar -->
+    <div class="bg-gradient-to-r from-brand-navyDark via-brand-navy to-brand-navyDark border-b border-brand-green/20 py-2 px-3 sm:px-6 text-center text-[11px] sm:text-xs text-slate-300 flex items-center justify-center gap-2">
+      <span class="flex h-2 w-2 relative shrink-0">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-green"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
       </span>
-      <span class="font-semibold tracking-wide">Next-Gen 3D Agency — <strong>50% Advance & 50% Handover Milestone Guarantee</strong></span>
+      <span class="truncate">Next-Gen 3D Agency — <strong>50% Advance & 50% Handover Guarantee</strong></span>
       <span class="hidden md:inline text-slate-600">|</span>
-      <a href="https://wa.me/923706954308?text=Hello%20XMAXIFY" class="text-brand-green font-bold hover:underline flex items-center gap-1 hidden md:flex">
-        <span>Direct WhatsApp: +92 370 6954308</span>
+      <a href="https://wa.me/923706954308?text=Hello%20XMAXIFY" class="text-brand-green font-bold hover:underline hidden md:inline">
+        WhatsApp: +92 370 6954308
       </a>
     </div>
 
     <!-- Main Navigation Header -->
-    <header class="sticky top-0 z-50 bg-[#060d1b]/85 backdrop-blur-xl border-b border-brand-green/15">
-      <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <header class="sticky top-0 z-50 bg-[#060d1b]/90 backdrop-blur-xl border-b border-brand-green/15 transition-all">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
         
-        <!-- Logo with Exact Brand Theme -->
-        <a href="#" class="flex items-center gap-3 group">
-          <div class="p-1 rounded-xl bg-brand-navy border border-brand-green/30 group-hover:border-brand-green transition duration-300 shadow-lg shadow-brand-green/10">
-            <img src="assets/logo.jpg" alt="XMAXIFY Official Logo" class="h-11 w-auto object-contain rounded-lg">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+          <div class="p-1 rounded-xl bg-brand-navy border border-brand-green/30 group-hover:border-brand-green transition duration-300 shadow-md">
+            <img src="assets/logo.jpg" alt="XMAXIFY Official Logo" class="h-8 sm:h-11 w-auto object-contain rounded-lg">
           </div>
           <div>
-            <div class="font-display font-black text-2xl tracking-wider text-white">XMAX<span class="text-brand-green">IFY</span></div>
-            <div class="text-[9px] tracking-[0.25em] text-slate-400 uppercase font-bold">Maximize Your Potential</div>
+            <div class="font-display font-black text-xl sm:text-2xl tracking-wider text-white">XMAX<span class="text-brand-green">IFY</span></div>
+            <div class="text-[8px] sm:text-[9px] tracking-[0.2em] text-slate-400 uppercase font-bold">Maximize Your Potential</div>
           </div>
         </a>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden md:flex items-center space-x-9 text-sm font-semibold text-slate-300">
-          <a href="#services" class="hover:text-brand-green transition duration-200">Capabilities</a>
-          <a href="#showcase" class="hover:text-brand-green transition duration-200">3D Showcase</a>
-          <a href="#pricing" class="hover:text-brand-green transition duration-200">Affordable Rates</a>
-          <a href="#process" class="hover:text-brand-green transition duration-200">50/50 Formula</a>
-          <a href="#contact" class="hover:text-brand-green transition duration-200">Contact</a>
+        <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-xs sm:text-sm font-semibold text-slate-300">
+          <a href="#services" class="hover:text-brand-green transition">Capabilities</a>
+          <a href="#showcase" class="hover:text-brand-green transition">3D Showcase</a>
+          <a href="#pricing" class="hover:text-brand-green transition">Affordable Rates</a>
+          <a href="#process" class="hover:text-brand-green transition">50/50 Formula</a>
+          <a href="#contact" class="hover:text-brand-green transition">Contact</a>
         </nav>
 
-        <!-- CTA Direct Button -->
-        <div class="flex items-center gap-4">
-          <a href="https://wa.me/923706954308?text=Hi%20Xmaxify,%20I%20want%20to%20build%20a%203D%20website" target="_blank" class="bg-brand-green hover:bg-brand-greenGlow text-slate-950 font-black px-6 py-2.5 rounded-full text-sm transition-all duration-300 shadow-xl shadow-brand-green/25 hover:shadow-brand-green/45 flex items-center gap-2 hover:scale-105">
+        <!-- Right CTA & Hamburger Button -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <a href="https://wa.me/923706954308?text=Hi%20Xmaxify,%20I%20want%20to%20build%20a%203D%20website" target="_blank" class="hidden sm:flex bg-brand-green hover:bg-brand-greenGlow text-slate-950 font-black px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm transition-all duration-300 shadow-lg shadow-brand-green/25 items-center gap-2 hover:scale-105">
             <i data-lucide="message-circle" class="w-4 h-4"></i>
-            <span>Start on WhatsApp</span>
+            <span>WhatsApp</span>
+          </a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button id="mobileMenuBtn" aria-label="Toggle Navigation Menu" class="md:hidden p-2 rounded-xl bg-brand-navy border border-brand-navyBorder text-slate-200 hover:text-brand-green focus:outline-none">
+            <i data-lucide="menu" id="menuIcon" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Navigation Drawer -->
+      <div id="mobileDrawer" class="hidden md:hidden bg-[#070e1c] border-b border-brand-green/20 px-4 py-5 space-y-3 transition-all duration-300">
+        <a href="#services" class="mobile-nav-link block py-2 px-3 rounded-lg text-sm font-semibold text-slate-200 hover:bg-brand-navy hover:text-brand-green transition">Capabilities</a>
+        <a href="#showcase" class="mobile-nav-link block py-2 px-3 rounded-lg text-sm font-semibold text-slate-200 hover:bg-brand-navy hover:text-brand-green transition">3D Showcase</a>
+        <a href="#pricing" class="mobile-nav-link block py-2 px-3 rounded-lg text-sm font-semibold text-slate-200 hover:bg-brand-navy hover:text-brand-green transition">Affordable Rates</a>
+        <a href="#process" class="mobile-nav-link block py-2 px-3 rounded-lg text-sm font-semibold text-slate-200 hover:bg-brand-navy hover:text-brand-green transition">50/50 Formula</a>
+        <a href="#contact" class="mobile-nav-link block py-2 px-3 rounded-lg text-sm font-semibold text-slate-200 hover:bg-brand-navy hover:text-brand-green transition">Contact</a>
+        <div class="pt-2">
+          <a href="https://wa.me/923706954308?text=Hi%20Xmaxify,%20I%20want%20to%20build%20a%203D%20website" target="_blank" class="w-full py-3 rounded-xl bg-brand-green text-slate-950 font-black text-xs text-center flex items-center justify-center gap-2 shadow-lg shadow-brand-green/20">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            <span>Chat on WhatsApp Directly</span>
           </a>
         </div>
       </div>
     </header>
 
-    <!-- HERO SECTION WITH INTERACTIVE 3D & ANIMATIONS -->
-    <section class="pt-24 pb-28 relative overflow-hidden">
-      <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+    <!-- HERO SECTION -->
+    <section class="pt-12 sm:pt-20 lg:pt-28 pb-14 sm:pb-20 lg:pb-28 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         
         <!-- Animated Badge -->
-        <div class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full glass-navy-card border border-brand-green/40 text-xs font-bold text-brand-green mb-8 shadow-xl shadow-brand-green/15 animate-float-3d">
-          <span class="w-2 h-2 rounded-full bg-brand-green animate-ping"></span>
-          <span>Dribbble-Standard 3D Web & Conversion Engineering</span>
+        <div class="inline-flex items-center gap-2 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full glass-navy-card border border-brand-green/40 text-[11px] sm:text-xs font-bold text-brand-green mb-6 sm:mb-8 shadow-lg shadow-brand-green/10 animate-float-3d max-w-full">
+          <span class="w-2 h-2 rounded-full bg-brand-green animate-ping shrink-0"></span>
+          <span class="truncate">Dribbble-Standard 3D Web & Conversion Engineering</span>
         </div>
 
         <!-- Hero Headline -->
-        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold tracking-tight text-white leading-[1.08] mb-8">
+        <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold tracking-tight text-white leading-[1.12] sm:leading-[1.08] mb-5 sm:mb-8">
           We Build Breathtaking <br>
           <span class="logo-gradient-text arrow-glow">3D Digital Experiences</span> <br>
-          <span class="text-3xl sm:text-5xl font-light text-slate-300">That Command Authority & Multiply Sales</span>
+          <span class="text-2xl sm:text-4xl lg:text-5xl font-light text-slate-300">That Multiply Business Inquiries</span>
         </h1>
 
-        <!-- Subtitle in English -->
-        <p class="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-          Outdated websites leak clients every single day. <strong class="text-white font-semibold">XMAXIFY</strong> transforms your business with cinematic 3D web animations, sub-second speed benchmarks, and automated WhatsApp order funnels.
+        <!-- Subtitle -->
+        <p class="text-sm sm:text-lg lg:text-xl text-slate-300 max-w-2xl sm:max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed font-light px-2">
+          Outdated websites lose clients every day. <strong class="text-white font-semibold">XMAXIFY</strong> transforms your business with cinematic 3D web animations, sub-second speed benchmarks, and automated WhatsApp order funnels.
         </p>
 
-        <!-- CTA Buttons with Micro-interactions -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-5 mb-20">
-          <a href="https://wa.me/923706954308?text=Hello%20XMAXIFY,%20I%20am%20ready%20to%20build%20my%20website" target="_blank" class="w-full sm:w-auto px-10 py-4 rounded-full bg-brand-green hover:bg-brand-greenGlow text-slate-950 font-black text-base transition-all duration-300 shadow-2xl shadow-brand-green/35 hover:scale-105 flex items-center justify-center gap-2">
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5 mb-12 sm:mb-20 max-w-md sm:max-w-none mx-auto">
+          <a href="https://wa.me/923706954308?text=Hello%20XMAXIFY,%20I%20am%20ready%20to%20build%20my%20website" target="_blank" class="w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-brand-green hover:bg-brand-greenGlow text-slate-950 font-black text-sm sm:text-base transition-all duration-300 shadow-xl shadow-brand-green/30 flex items-center justify-center gap-2">
             <span>Book Website on WhatsApp</span>
-            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5"></i>
           </a>
-          <a href="#pricing" class="w-full sm:w-auto px-9 py-4 rounded-full glass-navy-card text-white hover:text-brand-green font-bold text-base transition duration-300 border border-brand-navyBorder hover:border-brand-green">
+          <a href="#pricing" class="w-full sm:w-auto px-8 sm:px-9 py-3.5 sm:py-4 rounded-full glass-navy-card text-white hover:text-brand-green font-bold text-sm sm:text-base transition duration-300 border border-brand-navyBorder hover:border-brand-green text-center">
             View Affordable PKR Rates
           </a>
         </div>
 
-        <!-- 3D FLOATING MOCKUP SHOWCASE (Dribbble Grade) -->
-        <div class="relative max-w-5xl mx-auto">
+        <!-- 3D DEVICE SHOWCASE MOCKUP -->
+        <div class="relative max-w-4xl lg:max-w-5xl mx-auto px-1 sm:px-0">
           <div class="animated-border-box">
-            <div class="animated-border-content p-3 sm:p-5">
-              <div class="rounded-2xl overflow-hidden relative border border-slate-800">
+            <div class="animated-border-content p-2.5 sm:p-4 md:p-5">
+              <div class="rounded-xl sm:rounded-2xl overflow-hidden relative border border-slate-800">
                 
-                <!-- Browser Header -->
-                <div class="bg-brand-navyDark px-4 py-3 flex items-center justify-between border-b border-brand-navyBorder">
-                  <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-rose-500"></span>
-                    <span class="w-3 h-3 rounded-full bg-amber-500"></span>
-                    <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                <!-- Browser Bar -->
+                <div class="bg-brand-navyDark px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between border-b border-brand-navyBorder text-[10px] sm:text-xs">
+                  <div class="flex items-center gap-1.5 sm:gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
                   </div>
-                  <div class="bg-brand-navy px-4 py-1 rounded-md text-xs text-slate-400 font-mono flex items-center gap-2 border border-brand-navyBorder">
-                    <i data-lucide="lock" class="w-3 h-3 text-brand-green"></i>
-                    https://xmaxify.com/high-performance-storefront
+                  <div class="bg-brand-navy px-3 py-1 rounded-md text-slate-400 font-mono flex items-center gap-1.5 border border-brand-navyBorder truncate max-w-[200px] sm:max-w-xs">
+                    <i data-lucide="lock" class="w-3 h-3 text-brand-green shrink-0"></i>
+                    <span class="truncate">xmaxify.com/storefront</span>
                   </div>
-                  <div class="text-[10px] text-brand-green font-bold tracking-wider uppercase font-mono">60 FPS 3D ENGINE</div>
+                  <div class="text-[9px] sm:text-[10px] text-brand-green font-bold tracking-wider uppercase font-mono hidden sm:inline">60 FPS 3D</div>
                 </div>
 
-                <!-- High-Resolution Graphic Visual -->
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" alt="XMAXIFY 3D Dashboard" class="w-full h-[320px] sm:h-[480px] object-cover object-top filter brightness-95">
+                <!-- Showcase Image -->
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80" alt="XMAXIFY 3D Dashboard" class="w-full h-48 sm:h-80 md:h-[420px] object-cover object-top filter brightness-95">
 
-                <!-- Floating 3D Badge 1 -->
-                <div class="absolute bottom-6 left-6 glass-navy-card p-4 rounded-2xl hidden sm:flex items-center gap-4 border border-brand-green/40 shadow-2xl animate-float-3d">
-                  <div class="w-12 h-12 rounded-xl bg-brand-green/20 text-brand-green flex items-center justify-center font-black text-xl">
+                <!-- Floating 3D Badges (Visible on tablet & desktop) -->
+                <div class="absolute bottom-3 left-3 sm:bottom-6 sm:left-6 glass-navy-card p-2.5 sm:p-4 rounded-xl sm:rounded-2xl flex items-center gap-2.5 sm:gap-4 border border-brand-green/40 shadow-xl">
+                  <div class="w-8 h-8 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-brand-green/20 text-brand-green flex items-center justify-center font-black text-sm sm:text-lg shrink-0">
                     ⚡
                   </div>
                   <div class="text-left">
-                    <div class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Speed Benchmark</div>
-                    <div class="text-2xl font-black text-white font-display">0.8s Ultra Fast</div>
+                    <div class="text-[8px] sm:text-[10px] text-slate-400 uppercase font-bold tracking-wider">Speed</div>
+                    <div class="text-sm sm:text-xl font-black text-white font-display">0.8s Ultra Fast</div>
                   </div>
                 </div>
 
-                <!-- Floating 3D Badge 2 -->
-                <div class="absolute top-16 right-6 glass-navy-card p-4 rounded-2xl hidden sm:flex items-center gap-4 border border-blue-500/40 shadow-2xl animate-float-3d" style="animation-delay: -3s;">
-                  <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-black text-xl">
+                <div class="absolute top-10 right-3 sm:top-14 sm:right-6 glass-navy-card p-2.5 sm:p-4 rounded-xl sm:rounded-2xl hidden sm:flex items-center gap-3 border border-blue-500/40 shadow-xl">
+                  <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-black text-lg shrink-0">
                     📈
                   </div>
                   <div class="text-left">
-                    <div class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Conversion Boost</div>
-                    <div class="text-2xl font-black text-white font-display">+340% Leads</div>
+                    <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase font-bold tracking-wider">Conversion</div>
+                    <div class="text-sm sm:text-xl font-black text-white font-display">+340% Leads</div>
                   </div>
                 </div>
 
@@ -325,8 +347,8 @@
     </section>
 
     <!-- LIVE TECH MARQUEE -->
-    <div class="py-12 border-y border-brand-navyBorder bg-[#050b16] overflow-hidden">
-      <div class="marquee-track font-display text-lg font-bold text-slate-400">
+    <div class="py-8 sm:py-12 border-y border-brand-navyBorder bg-[#050b16] overflow-hidden w-full">
+      <div class="marquee-track font-display text-sm sm:text-base md:text-lg font-bold text-slate-400 px-4">
         <span class="text-white">THREE.JS 3D</span> <span class="text-brand-green">•</span>
         <span>NEXT.JS 15</span> <span class="text-brand-green">•</span>
         <span class="text-white">SHOPIFY LIQUID</span> <span class="text-brand-green">•</span>
@@ -339,72 +361,72 @@
       </div>
     </div>
 
-    <!-- CORE CAPABILITIES (3D Interactive Tilt Cards) -->
-    <section id="services" class="py-28 relative">
-      <div class="max-w-7xl mx-auto px-6">
+    <!-- CORE CAPABILITIES -->
+    <section id="services" class="py-14 sm:py-20 lg:py-28 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="text-center max-w-3xl mx-auto mb-20">
-          <div class="text-xs font-bold text-brand-green tracking-widest uppercase mb-3">What We Engineer</div>
-          <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white">Full-Stack Digital Superpowers</h2>
-          <p class="text-slate-400 text-base mt-4 font-light">Combining Dribbble visual excellence with robust enterprise technology.</p>
+        <div class="text-center max-w-2xl sm:max-w-3xl mx-auto mb-10 sm:mb-16">
+          <div class="text-[11px] sm:text-xs font-bold text-brand-green tracking-widest uppercase mb-2">What We Engineer</div>
+          <h2 class="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white">Full-Stack Digital Superpowers</h2>
+          <p class="text-slate-400 text-xs sm:text-sm lg:text-base mt-2 sm:mt-3 font-light">Combining Dribbble visual excellence with robust enterprise technology.</p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           
           <!-- Card 1 -->
-          <div class="glass-navy-card p-8 rounded-3xl group relative overflow-hidden tilt-target">
-            <div class="h-44 rounded-2xl overflow-hidden mb-6 relative">
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="3D Web Development" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+          <div class="glass-navy-card p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl group relative overflow-hidden tilt-target">
+            <div class="h-40 sm:h-44 rounded-xl sm:rounded-2xl overflow-hidden mb-5 relative">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="3D Web Development" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
               <div class="absolute inset-0 bg-gradient-to-t from-brand-navyDark via-transparent to-transparent"></div>
-              <span class="absolute bottom-3 left-3 bg-brand-green text-slate-950 text-xs font-bold px-3 py-1 rounded-full">3D Next.js</span>
+              <span class="absolute bottom-2.5 left-2.5 bg-brand-green text-slate-950 text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full">3D Next.js</span>
             </div>
-            <h3 class="text-2xl font-bold font-display text-white mb-3">Custom 3D Web Apps</h3>
-            <p class="text-slate-300 text-sm leading-relaxed mb-6 font-light">
+            <h3 class="text-lg sm:text-xl lg:text-2xl font-bold font-display text-white mb-2 sm:mb-3">Custom 3D Web Apps</h3>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-5 font-light">
               Interactive 3D corporate portals and bespoke landing pages built to mesmerize your audience and convert visitors into high-ticket clients.
             </p>
-            <ul class="text-xs text-slate-400 space-y-2.5 font-medium">
-              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green"></i> Sub-second page load times</li>
-              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green"></i> Fluid mobile 3D animations</li>
-              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green"></i> Full Google Search SEO setup</li>
+            <ul class="text-xs text-slate-400 space-y-2 font-medium">
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green shrink-0"></i> Sub-second page load times</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green shrink-0"></i> Fluid mobile 3D animations</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green shrink-0"></i> Full Google Search SEO setup</li>
             </ul>
           </div>
 
-          <!-- Card 2 (Featured) -->
-          <div class="glass-navy-card p-8 rounded-3xl group relative overflow-hidden border-brand-green/60 shadow-2xl shadow-brand-green/10 tilt-target">
-            <div class="absolute top-4 right-4 bg-brand-green text-slate-950 text-[10px] font-black uppercase px-3 py-1 rounded-full">
+          <!-- Card 2 -->
+          <div class="glass-navy-card p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl group relative overflow-hidden border-brand-green/60 shadow-xl tilt-target">
+            <div class="absolute top-3 right-3 sm:top-4 sm:right-4 bg-brand-green text-slate-950 text-[9px] sm:text-[10px] font-black uppercase px-2.5 py-1 rounded-full">
               Highest ROI
             </div>
-            <div class="h-44 rounded-2xl overflow-hidden mb-6 relative">
-              <img src="https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=600&q=80" alt="Shopify E-Commerce" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            <div class="h-40 sm:h-44 rounded-xl sm:rounded-2xl overflow-hidden mb-5 relative">
+              <img src="https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=600&q=80" alt="Shopify E-Commerce" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
               <div class="absolute inset-0 bg-gradient-to-t from-brand-navyDark via-transparent to-transparent"></div>
-              <span class="absolute bottom-3 left-3 bg-blue-400 text-slate-950 text-xs font-bold px-3 py-1 rounded-full">Retail Scale</span>
+              <span class="absolute bottom-2.5 left-2.5 bg-blue-400 text-slate-950 text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full">Retail Scale</span>
             </div>
-            <h3 class="text-2xl font-bold font-display text-white mb-3">Shopify & Retail E-Commerce</h3>
-            <p class="text-slate-300 text-sm leading-relaxed mb-6 font-light">
+            <h3 class="text-lg sm:text-xl lg:text-2xl font-bold font-display text-white mb-2 sm:mb-3">Shopify & Retail E-Commerce</h3>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-5 font-light">
               Full online stores optimized for Pakistan: Cash on Delivery (COD), automated TCS/Leopards shipping slips, and direct WhatsApp checkout.
             </p>
-            <ul class="text-xs text-slate-400 space-y-2.5 font-medium">
-              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green"></i> 1-click lightning mobile checkout</li>
-              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green"></i> EasyPaisa, Card & COD integrated</li>
-              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green"></i> Automated WhatsApp order tracking</li>
+            <ul class="text-xs text-slate-400 space-y-2 font-medium">
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green shrink-0"></i> 1-click lightning mobile checkout</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green shrink-0"></i> EasyPaisa, Card & COD integrated</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green shrink-0"></i> Automated WhatsApp order tracking</li>
             </ul>
           </div>
 
           <!-- Card 3 -->
-          <div class="glass-navy-card p-8 rounded-3xl group relative overflow-hidden tilt-target">
-            <div class="h-44 rounded-2xl overflow-hidden mb-6 relative">
-              <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" alt="UI UX Modern Redesign" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+          <div class="glass-navy-card p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl group relative overflow-hidden tilt-target">
+            <div class="h-40 sm:h-44 rounded-xl sm:rounded-2xl overflow-hidden mb-5 relative">
+              <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" alt="UI UX Modern Redesign" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
               <div class="absolute inset-0 bg-gradient-to-t from-brand-navyDark via-transparent to-transparent"></div>
-              <span class="absolute bottom-3 left-3 bg-teal-400 text-slate-950 text-xs font-bold px-3 py-1 rounded-full">Modern Redesign</span>
+              <span class="absolute bottom-2.5 left-2.5 bg-teal-400 text-slate-950 text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full">Modern Redesign</span>
             </div>
-            <h3 class="text-2xl font-bold font-display text-white mb-3">Awwwards-Grade UI/UX Redesign</h3>
-            <p class="text-slate-300 text-sm leading-relaxed mb-6 font-light">
+            <h3 class="text-lg sm:text-xl lg:text-2xl font-bold font-display text-white mb-2 sm:mb-3">Awwwards-Grade UI/UX Redesign</h3>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-5 font-light">
               Upgrade your current website into a cutting-edge international digital storefront that commands higher prices and consumer trust.
             </p>
-            <ul class="text-xs text-slate-400 space-y-2.5 font-medium">
-              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green"></i> Figma interactive prototyping</li>
-              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green"></i> 3x faster page speed overhaul</li>
-              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green"></i> Conversion rate optimization (CRO)</li>
+            <ul class="text-xs text-slate-400 space-y-2 font-medium">
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green shrink-0"></i> Figma interactive prototyping</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green shrink-0"></i> 3x faster page speed overhaul</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-green shrink-0"></i> Conversion rate optimization (CRO)</li>
             </ul>
           </div>
 
@@ -413,37 +435,37 @@
     </section>
 
     <!-- PROVEN PORTFOLIO SHOWCASES -->
-    <section id="showcase" class="py-28 bg-[#040914] border-t border-brand-navyBorder relative">
-      <div class="max-w-7xl mx-auto px-6">
+    <section id="showcase" class="py-14 sm:py-20 lg:py-28 bg-[#040914] border-t border-brand-navyBorder relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="text-center max-w-3xl mx-auto mb-20">
-          <div class="text-xs font-bold text-brand-green tracking-widest uppercase mb-3">Live Case Studies</div>
-          <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white">Client Success Stories</h2>
-          <p class="text-slate-400 text-base mt-4 font-light">Real businesses scaled with XMAXIFY high-performance digital engines.</p>
+        <div class="text-center max-w-2xl sm:max-w-3xl mx-auto mb-10 sm:mb-16">
+          <div class="text-[11px] sm:text-xs font-bold text-brand-green tracking-widest uppercase mb-2">Live Case Studies</div>
+          <h2 class="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white">Client Success Stories</h2>
+          <p class="text-slate-400 text-xs sm:text-sm lg:text-base mt-2 sm:mt-3 font-light">Real businesses scaled with XMAXIFY high-performance digital engines.</p>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10">
           
           <!-- Project 1 -->
-          <div class="glass-navy-card rounded-3xl overflow-hidden group">
-            <div class="h-64 sm:h-80 overflow-hidden relative">
-              <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=80" alt="Luxe Apparel Fashion Store" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-              <div class="absolute inset-0 bg-gradient-to-t from-brand-navyDark via-brand-navyDark/30 to-transparent"></div>
-              <div class="absolute top-4 left-4 bg-brand-green text-slate-950 text-xs font-extrabold px-3 py-1 rounded-full uppercase">
+          <div class="glass-navy-card rounded-2xl sm:rounded-3xl overflow-hidden group">
+            <div class="h-52 sm:h-72 overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=80" alt="Luxe Apparel Fashion Store" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-navyDark via-brand-navyDark/40 to-transparent"></div>
+              <div class="absolute top-3 left-3 sm:top-4 sm:left-4 bg-brand-green text-slate-950 text-[10px] sm:text-xs font-extrabold px-2.5 sm:px-3 py-1 rounded-full uppercase">
                 Fashion & Retail
               </div>
-              <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+              <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex justify-between items-end gap-2">
                 <div>
-                  <h4 class="text-2xl font-bold font-display text-white">Luxe Apparel Lahore</h4>
-                  <p class="text-xs text-slate-300">Shopify Custom Store & COD Automation</p>
+                  <h4 class="text-lg sm:text-2xl font-bold font-display text-white">Luxe Apparel Lahore</h4>
+                  <p class="text-[11px] sm:text-xs text-slate-300">Shopify Custom Store & COD Automation</p>
                 </div>
-                <div class="bg-brand-green text-slate-950 font-black text-xs px-3 py-1.5 rounded-lg">
+                <div class="bg-brand-green text-slate-950 font-black text-[10px] sm:text-xs px-2.5 sm:px-3 py-1 rounded-lg shrink-0">
                   +380% Orders
                 </div>
               </div>
             </div>
-            <div class="p-6 sm:p-8 flex items-center justify-between">
-              <p class="text-xs sm:text-sm text-slate-300 max-w-md font-light">
+            <div class="p-4 sm:p-6 lg:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+              <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
                 Complete automated online store featuring mobile one-click checkout, automated courier slips, and WhatsApp order alerts.
               </p>
               <a href="https://wa.me/923706954308?text=I%20want%20a%20store%20like%20Luxe%20Apparel" target="_blank" class="text-brand-green font-bold text-xs sm:text-sm hover:underline flex items-center gap-1 shrink-0">
@@ -454,25 +476,25 @@
           </div>
 
           <!-- Project 2 -->
-          <div class="glass-navy-card rounded-3xl overflow-hidden group">
-            <div class="h-64 sm:h-80 overflow-hidden relative">
-              <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1000&q=80" alt="Apex Heights Real Estate" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-              <div class="absolute inset-0 bg-gradient-to-t from-brand-navyDark via-brand-navyDark/30 to-transparent"></div>
-              <div class="absolute top-4 left-4 bg-blue-500 text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase">
+          <div class="glass-navy-card rounded-2xl sm:rounded-3xl overflow-hidden group">
+            <div class="h-52 sm:h-72 overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1000&q=80" alt="Apex Heights Real Estate" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-navyDark via-brand-navyDark/40 to-transparent"></div>
+              <div class="absolute top-3 left-3 sm:top-4 sm:left-4 bg-blue-500 text-white text-[10px] sm:text-xs font-extrabold px-2.5 sm:px-3 py-1 rounded-full uppercase">
                 Real Estate Islamabad
               </div>
-              <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+              <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex justify-between items-end gap-2">
                 <div>
-                  <h4 class="text-2xl font-bold font-display text-white">Apex Heights Real Estate</h4>
-                  <p class="text-xs text-slate-300">Interactive 3D Property Showcase</p>
+                  <h4 class="text-lg sm:text-2xl font-bold font-display text-white">Apex Heights Real Estate</h4>
+                  <p class="text-[11px] sm:text-xs text-slate-300">Interactive 3D Property Showcase</p>
                 </div>
-                <div class="bg-blue-400 text-slate-950 font-black text-xs px-3 py-1.5 rounded-lg">
-                  140+ Monthly Leads
+                <div class="bg-blue-400 text-slate-950 font-black text-[10px] sm:text-xs px-2.5 sm:px-3 py-1 rounded-lg shrink-0">
+                  140+ Leads/Mo
                 </div>
               </div>
             </div>
-            <div class="p-6 sm:p-8 flex items-center justify-between">
-              <p class="text-xs sm:text-sm text-slate-300 max-w-md font-light">
+            <div class="p-4 sm:p-6 lg:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+              <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
                 High-converting landing page with 3D floor plan explorer, video walkthrough integration, and instant lead capture routing.
               </p>
               <a href="https://wa.me/923706954308?text=I%20want%20a%20real%20estate%20portal%20like%20Apex%20Heights" target="_blank" class="text-brand-green font-bold text-xs sm:text-sm hover:underline flex items-center gap-1 shrink-0">
@@ -486,97 +508,97 @@
       </div>
     </section>
 
-    <!-- TRANSPARENT & AFFORDABLE RATES (PKR / EASYPAISA VERIFIED) -->
-    <section id="pricing" class="py-28 relative">
-      <div class="max-w-7xl mx-auto px-6">
+    <!-- TRANSPARENT & AFFORDABLE RATES -->
+    <section id="pricing" class="py-14 sm:py-20 lg:py-28 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <div class="text-xs font-bold text-brand-green tracking-widest uppercase mb-3">Accessible For Everyone</div>
-          <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white">Affordable & Transparent Packages</h2>
-          <p class="text-slate-400 text-base mt-4 font-light">
+        <div class="text-center max-w-2xl sm:max-w-3xl mx-auto mb-10 sm:mb-16">
+          <div class="text-[11px] sm:text-xs font-bold text-brand-green tracking-widest uppercase mb-2">Accessible For Everyone</div>
+          <h2 class="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white">Affordable & Transparent Packages</h2>
+          <p class="text-slate-400 text-xs sm:text-sm lg:text-base mt-2 sm:mt-3 font-light px-2">
             Risk-free <strong>50% advance deposit</strong> to initiate, and <strong>50% final balance</strong> strictly upon approving your completed live demo.
           </p>
 
           <!-- EasyPaisa Official Verified Box -->
-          <div class="mt-8 inline-flex items-center gap-3 bg-emerald-950/70 border border-brand-green/50 px-6 py-3.5 rounded-2xl text-left shadow-lg shadow-brand-green/10">
-            <div class="w-10 h-10 rounded-xl bg-brand-green/20 text-brand-green flex items-center justify-center font-bold text-xl">
+          <div class="mt-6 sm:mt-8 inline-flex items-center gap-3 bg-emerald-950/70 border border-brand-green/50 px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-xl sm:rounded-2xl text-left shadow-lg shadow-brand-green/10 max-w-full">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-green/20 text-brand-green flex items-center justify-center font-bold text-lg shrink-0">
               💳
             </div>
-            <div>
-              <div class="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Official EasyPaisa Account</div>
-              <div class="text-sm sm:text-base font-bold text-white font-mono">03236150006 — Title: Atif Mahmood</div>
+            <div class="truncate">
+              <div class="text-[10px] sm:text-[11px] text-slate-400 uppercase font-bold tracking-wider">Official EasyPaisa Account</div>
+              <div class="text-xs sm:text-base font-bold text-white font-mono truncate">03236150006 — Title: Atif Mahmood</div>
             </div>
           </div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch max-w-6xl mx-auto">
           
           <!-- Tier 1: Starter -->
-          <div class="glass-navy-card p-8 rounded-3xl flex flex-col justify-between">
+          <div class="glass-navy-card p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl flex flex-col justify-between">
             <div>
               <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Starter Growth</div>
-              <div class="text-4xl font-extrabold text-white font-display mb-1">Rs 18,000</div>
-              <div class="text-xs text-brand-green font-semibold mb-6">50% Advance Milestone: Rs 9,000</div>
-              <p class="text-xs text-slate-300 font-light mb-6">Ideal for product launches, freelancers, and single-offer landing pages.</p>
+              <div class="text-3xl sm:text-4xl font-extrabold text-white font-display mb-1">Rs 18,000</div>
+              <div class="text-xs text-brand-green font-semibold mb-5 sm:mb-6">50% Advance Milestone: Rs 9,000</div>
+              <p class="text-xs text-slate-300 font-light mb-5 sm:mb-6">Ideal for product launches, freelancers, and single-offer landing pages.</p>
               
-              <ul class="text-xs text-slate-300 space-y-3.5 mb-8 font-light">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> 3D Modern Landing Page</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> Direct 1-Click WhatsApp Order Button</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> Speed Optimized (&lt; 1.2s Load Time)</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> 100% Mobile & 4G Responsive</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> 3 Business Days Delivery</li>
+              <ul class="text-xs text-slate-300 space-y-3 mb-6 sm:mb-8 font-light">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green shrink-0"></i> 3D Modern Landing Page</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green shrink-0"></i> Direct 1-Click WhatsApp Order Button</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green shrink-0"></i> Speed Optimized (&lt; 1.2s Load Time)</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green shrink-0"></i> 100% Mobile & 4G Responsive</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green shrink-0"></i> 3 Business Days Delivery</li>
               </ul>
             </div>
 
-            <a href="https://wa.me/923706954308?text=Hi%20XMAXIFY,%20I%20want%20to%20order%20the%20Rs%2018,000%20Starter%20Package" target="_blank" class="w-full block text-center py-4 rounded-2xl glass-navy-card text-xs font-bold hover:border-brand-green text-white transition hover:scale-102">
+            <a href="https://wa.me/923706954308?text=Hi%20XMAXIFY,%20I%20want%20to%20order%20the%20Rs%2018,000%20Starter%20Package" target="_blank" class="w-full block text-center py-3.5 sm:py-4 rounded-xl sm:rounded-2xl glass-navy-card text-xs font-bold hover:border-brand-green text-white transition">
               Start Project (Rs 9,000 Deposit)
             </a>
           </div>
 
           <!-- Tier 2: Business Pro (Featured) -->
-          <div class="glass-navy-card p-8 rounded-3xl border-2 border-brand-green relative flex flex-col justify-between shadow-2xl shadow-brand-green/20">
-            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-green text-slate-950 text-[10px] font-black uppercase px-4 py-1 rounded-full tracking-wider">
+          <div class="glass-navy-card p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl border-2 border-brand-green relative flex flex-col justify-between shadow-xl shadow-brand-green/20">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-green text-slate-950 text-[9px] sm:text-[10px] font-black uppercase px-3.5 py-1 rounded-full tracking-wider whitespace-nowrap">
               Most Popular Choice
             </div>
             <div>
               <div class="text-xs font-bold uppercase tracking-wider text-brand-green mb-2">Business Scale</div>
-              <div class="text-4xl font-extrabold text-white font-display mb-1">Rs 45,000</div>
-              <div class="text-xs text-brand-green font-semibold mb-6">50% Advance Milestone: Rs 22,500</div>
-              <p class="text-xs text-slate-300 font-light mb-6">Complete web presence for established companies ready to dominate their market.</p>
+              <div class="text-3xl sm:text-4xl font-extrabold text-white font-display mb-1">Rs 45,000</div>
+              <div class="text-xs text-brand-green font-semibold mb-5 sm:mb-6">50% Advance Milestone: Rs 22,500</div>
+              <p class="text-xs text-slate-300 font-light mb-5 sm:mb-6">Complete web presence for established companies ready to dominate their market.</p>
               
-              <ul class="text-xs text-slate-300 space-y-3.5 mb-8 font-light">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> 5 to 7 Custom Designed 3D Pages</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> Google Search SEO Ranking Setup</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> Admin Dashboard (Edit text & images yourself)</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> Floating WhatsApp Live Chat Integration</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> Social Accounts & Google Maps Linking</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> 6 Business Days Delivery Guarantee</li>
+              <ul class="text-xs text-slate-300 space-y-3 mb-6 sm:mb-8 font-light">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green shrink-0"></i> 5 to 7 Custom Designed 3D Pages</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green shrink-0"></i> Google Search SEO Ranking Setup</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green shrink-0"></i> Admin Dashboard (Edit text & images yourself)</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green shrink-0"></i> Floating WhatsApp Live Chat Integration</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green shrink-0"></i> Social Accounts & Google Maps Linking</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green shrink-0"></i> 6 Business Days Delivery Guarantee</li>
               </ul>
             </div>
 
-            <a href="https://wa.me/923706954308?text=Hi%20XMAXIFY,%20I%20want%20to%20order%20the%20Rs%2045,000%20Business%20Scale%20Package" target="_blank" class="w-full block text-center py-4 rounded-2xl bg-brand-green hover:bg-brand-greenGlow text-slate-950 text-xs font-black transition shadow-lg shadow-brand-green/30 hover:scale-102">
+            <a href="https://wa.me/923706954308?text=Hi%20XMAXIFY,%20I%20want%20to%20order%20the%20Rs%2045,000%20Business%20Scale%20Package" target="_blank" class="w-full block text-center py-3.5 sm:py-4 rounded-xl sm:rounded-2xl bg-brand-green hover:bg-brand-greenGlow text-slate-950 text-xs font-black transition shadow-lg shadow-brand-green/30">
               Claim Business Package (Rs 22,500 Deposit)
             </a>
           </div>
 
           <!-- Tier 3: Enterprise Store -->
-          <div class="glass-navy-card p-8 rounded-3xl flex flex-col justify-between">
+          <div class="glass-navy-card p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl flex flex-col justify-between">
             <div>
               <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Enterprise Store</div>
-              <div class="text-4xl font-extrabold text-white font-display mb-1">Rs 85,000</div>
-              <div class="text-xs text-brand-green font-semibold mb-6">50% Advance Milestone: Rs 42,500</div>
-              <p class="text-xs text-slate-300 font-light mb-6">Complete Shopify or Custom Online Store with unlimited products and logistics automation.</p>
+              <div class="text-3xl sm:text-4xl font-extrabold text-white font-display mb-1">Rs 85,000</div>
+              <div class="text-xs text-brand-green font-semibold mb-5 sm:mb-6">50% Advance Milestone: Rs 42,500</div>
+              <p class="text-xs text-slate-300 font-light mb-5 sm:mb-6">Complete Shopify or Custom Online Store with unlimited products and logistics automation.</p>
               
-              <ul class="text-xs text-slate-300 space-y-3.5 mb-8 font-light">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> Full E-Commerce Store (Unlimited Products)</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> Cash on Delivery + EasyPaisa / Card Gateways</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> Automated TCS / Leopards Courier Slips</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> Automated WhatsApp Order Confirmations</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> 30 Days Free Dedicated Technical Support</li>
+              <ul class="text-xs text-slate-300 space-y-3 mb-6 sm:mb-8 font-light">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green shrink-0"></i> Full E-Commerce Store (Unlimited Products)</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green shrink-0"></i> Cash on Delivery + EasyPaisa / Card Gateways</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green shrink-0"></i> Automated TCS / Leopards Courier Slips</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green shrink-0"></i> Automated WhatsApp Order Confirmations</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green shrink-0"></i> 30 Days Free Dedicated Technical Support</li>
               </ul>
             </div>
 
-            <a href="https://wa.me/923706954308?text=Hi%20XMAXIFY,%20I%20want%20to%20order%20the%20Rs%2085,000%20Enterprise%20E-Commerce%20Store" target="_blank" class="w-full block text-center py-4 rounded-2xl glass-navy-card text-xs font-bold hover:border-brand-green text-white transition hover:scale-102">
+            <a href="https://wa.me/923706954308?text=Hi%20XMAXIFY,%20I%20want%20to%20order%20the%20Rs%2085,000%20Enterprise%20E-Commerce%20Store" target="_blank" class="w-full block text-center py-3.5 sm:py-4 rounded-xl sm:rounded-2xl glass-navy-card text-xs font-bold hover:border-brand-green text-white transition">
               Build E-Commerce Store (Rs 42,500 Deposit)
             </a>
           </div>
@@ -586,35 +608,35 @@
     </section>
 
     <!-- 50/50 SECURITY FORMULA -->
-    <section id="process" class="py-24 bg-[#050b16] border-t border-brand-navyBorder">
-      <div class="max-w-5xl mx-auto px-6 text-center">
-        <div class="text-xs font-bold text-brand-green tracking-widest uppercase mb-2">Safe & Transparent Workflow</div>
-        <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white mb-6">The 50/50 Security Formula</h2>
-        <p class="text-slate-400 text-sm max-w-2xl mx-auto mb-16 font-light">
+    <section id="process" class="py-14 sm:py-20 lg:py-24 bg-[#050b16] border-t border-brand-navyBorder">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="text-[11px] sm:text-xs font-bold text-brand-green tracking-widest uppercase mb-2">Safe & Transparent Workflow</div>
+        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white mb-4 sm:mb-6">The 50/50 Security Formula</h2>
+        <p class="text-slate-400 text-xs sm:text-sm max-w-2xl mx-auto mb-10 sm:mb-16 font-light">
           We protect your hard-earned investment. You never pay 100% upfront—you only release the final balance after inspecting your live demo.
         </p>
 
-        <div class="grid md:grid-cols-3 gap-8 text-left">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 text-left">
           
-          <div class="glass-navy-card p-7 rounded-2xl border-t-4 border-t-brand-green">
-            <div class="text-brand-green font-display font-black text-3xl mb-3">01</div>
-            <h4 class="font-bold text-white text-base mb-2">Milestone Contract & 50%</h4>
+          <div class="glass-navy-card p-5 sm:p-7 rounded-2xl border-t-4 border-t-brand-green">
+            <div class="text-brand-green font-display font-black text-2xl sm:text-3xl mb-2 sm:mb-3">01</div>
+            <h4 class="font-bold text-white text-sm sm:text-base mb-2">Milestone Contract & 50%</h4>
             <p class="text-slate-300 text-xs leading-relaxed font-light">
               We execute a formal agreement specifying deliverables and delivery dates. You transfer the 50% kick-off deposit via EasyPaisa or Bank.
             </p>
           </div>
 
-          <div class="glass-navy-card p-7 rounded-2xl border-t-4 border-t-blue-400">
-            <div class="text-blue-400 font-display font-black text-3xl mb-3">02</div>
-            <h4 class="font-bold text-white text-base mb-2">Private Demo Staging</h4>
+          <div class="glass-navy-card p-5 sm:p-7 rounded-2xl border-t-4 border-t-blue-400">
+            <div class="text-blue-400 font-display font-black text-2xl sm:text-3xl mb-2 sm:mb-3">02</div>
+            <h4 class="font-bold text-white text-sm sm:text-base mb-2">Private Demo Staging</h4>
             <p class="text-slate-300 text-xs leading-relaxed font-light">
               We engineer your bespoke website on our private staging server. You test every button, mobile view, and flow with 2 rounds of free revisions.
             </p>
           </div>
 
-          <div class="glass-navy-card p-7 rounded-2xl border-t-4 border-t-emerald-400">
-            <div class="text-emerald-400 font-display font-black text-3xl mb-3">03</div>
-            <h4 class="font-bold text-white text-base mb-2">Final 50% & Live Launch</h4>
+          <div class="glass-navy-card p-5 sm:p-7 rounded-2xl border-t-4 border-t-emerald-400">
+            <div class="text-emerald-400 font-display font-black text-2xl sm:text-3xl mb-2 sm:mb-3">03</div>
+            <h4 class="font-bold text-white text-sm sm:text-base mb-2">Final 50% & Live Launch</h4>
             <p class="text-slate-300 text-xs leading-relaxed font-light">
               Only once you are 100% satisfied do you send the final 50% balance. We deploy your site live to your domain and transfer full ownership.
             </p>
@@ -625,52 +647,52 @@
     </section>
 
     <!-- CONTACT SECTION -->
-    <section id="contact" class="py-24 relative">
-      <div class="max-w-4xl mx-auto px-6 text-center">
-        <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white mb-6">Let's Build Something Mind-Blowing</h2>
-        <p class="text-slate-400 text-sm max-w-xl mx-auto mb-10 font-light">
+    <section id="contact" class="py-14 sm:py-20 lg:py-24 relative">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white mb-4 sm:mb-6">Let's Build Something Exceptional</h2>
+        <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mb-8 sm:mb-12 font-light">
           Reach out to our leadership team directly via WhatsApp or Email. We respond within minutes.
         </p>
 
-        <div class="grid sm:grid-cols-2 gap-6 text-left max-w-2xl mx-auto mb-12">
-          <div class="glass-navy-card p-6 rounded-2xl flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-brand-green/20 text-brand-green flex items-center justify-center text-xl">
-              <i data-lucide="phone" class="w-6 h-6"></i>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-left max-w-2xl mx-auto mb-8 sm:mb-12">
+          <div class="glass-navy-card p-4 sm:p-6 rounded-2xl flex items-center gap-3.5 sm:gap-4">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-green/20 text-brand-green flex items-center justify-center text-lg sm:text-xl shrink-0">
+              <i data-lucide="phone" class="w-5 h-5 sm:w-6 sm:h-6"></i>
             </div>
-            <div>
-              <div class="text-xs text-slate-400">Official WhatsApp (Inquiries)</div>
-              <div class="text-base font-bold text-white font-mono">+92 370 6954308</div>
+            <div class="truncate">
+              <div class="text-[10px] sm:text-xs text-slate-400">Official WhatsApp (Inquiries)</div>
+              <div class="text-sm sm:text-base font-bold text-white font-mono truncate">+92 370 6954308</div>
             </div>
           </div>
-          <div class="glass-navy-card p-6 rounded-2xl flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl">
-              <i data-lucide="mail" class="w-6 h-6"></i>
+          <div class="glass-navy-card p-4 sm:p-6 rounded-2xl flex items-center gap-3.5 sm:gap-4">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg sm:text-xl shrink-0">
+              <i data-lucide="mail" class="w-5 h-5 sm:w-6 sm:h-6"></i>
             </div>
-            <div>
-              <div class="text-xs text-slate-400">Direct Agency Email</div>
-              <div class="text-base font-bold text-white font-mono">xmaxify@gmail.com</div>
+            <div class="truncate">
+              <div class="text-[10px] sm:text-xs text-slate-400">Direct Agency Email</div>
+              <div class="text-sm sm:text-base font-bold text-white font-mono truncate">xmaxify@gmail.com</div>
             </div>
           </div>
         </div>
 
-        <a href="https://wa.me/923706954308?text=Hello%20XMAXIFY,%20I%20am%20ready%20to%20discuss%20my%20website%20project" target="_blank" class="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-brand-green hover:bg-brand-greenGlow text-slate-950 font-black text-lg transition-all duration-300 shadow-2xl shadow-brand-green/35 hover:scale-105">
-          <i data-lucide="message-circle" class="w-6 h-6"></i>
+        <a href="https://wa.me/923706954308?text=Hello%20XMAXIFY,%20I%20am%20ready%20to%20discuss%20my%20website%20project" target="_blank" class="inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-brand-green hover:bg-brand-greenGlow text-slate-950 font-black text-sm sm:text-lg transition-all duration-300 shadow-xl shadow-brand-green/35 w-full sm:w-auto">
+          <i data-lucide="message-circle" class="w-5 h-5 sm:w-6 sm:h-6"></i>
           <span>Chat on WhatsApp Directly</span>
         </a>
       </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="py-12 border-t border-brand-navyBorder bg-[#03060d] text-xs text-slate-500">
-      <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-        <div class="flex items-center gap-3">
-          <img src="assets/logo.jpg" alt="XMAXIFY Logo" class="h-8 w-auto rounded">
-          <span class="text-slate-300 font-display font-extrabold text-sm">XMAX<span class="text-brand-green">IFY</span></span>
+    <footer class="py-10 sm:py-12 border-t border-brand-navyBorder bg-[#03060d] text-xs text-slate-500">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 text-center sm:text-left">
+        <div class="flex items-center gap-2.5 sm:gap-3">
+          <img src="assets/logo.jpg" alt="XMAXIFY Logo" class="h-7 sm:h-8 w-auto rounded">
+          <span class="text-slate-300 font-display font-extrabold text-xs sm:text-sm">XMAX<span class="text-brand-green">IFY</span></span>
           <span class="text-slate-700">|</span>
-          <span>Maximize Your Potential</span>
+          <span class="text-[10px] sm:text-xs">Maximize Your Potential</span>
         </div>
         <div>© 2026 XMAXIFY Digital Solutions. All Rights Reserved.</div>
-        <div class="flex gap-4">
+        <div class="flex gap-4 text-[11px] sm:text-xs">
           <a href="#services" class="hover:text-slate-300">Capabilities</a>
           <a href="#pricing" class="hover:text-slate-300">Pricing</a>
           <a href="mailto:xmaxify@gmail.com" class="hover:text-slate-300">xmaxify@gmail.com</a>
@@ -678,26 +700,41 @@
       </div>
     </footer>
 
-    <!-- FLOATING WHATSAPP BUTTON WITH PULSE -->
-    <a href="https://wa.me/923706954308?text=Hello%20XMAXIFY,%20I%20want%20to%20inquire%20about%20a%20website" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20ba59] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center group" title="Chat with XMAXIFY">
-      <span class="absolute -top-1 -right-1 flex h-4 w-4">
+    <!-- FLOATING WHATSAPP BUTTON (Optimized Mobile Padding) -->
+    <a href="https://wa.me/923706954308?text=Hello%20XMAXIFY,%20I%20want%20to%20inquire%20about%20a%20website" target="_blank" class="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 bg-[#25D366] hover:bg-[#20ba59] text-white p-3.5 sm:p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center" title="Chat with XMAXIFY">
+      <span class="absolute -top-1 -right-1 flex h-3.5 w-3.5 sm:h-4 sm:w-4">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-4 w-4 bg-emerald-400"></span>
+        <span class="relative inline-flex rounded-full h-3.5 w-3.5 sm:h-4 sm:w-4 bg-emerald-400"></span>
       </span>
-      <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+      <svg class="w-6 h-6 sm:w-7 sm:h-7 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
     </a>
 
   </div>
 
-  <!-- Lucide Init -->
+  <!-- Lucide Init & Mobile Drawer Logic -->
   <script>
     lucide.createIcons();
-  </script>
 
-  <!-- CUSTOM CURSOR SCRIPT -->
-  <script>
+    // Mobile Navigation Drawer Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+
+    if (mobileMenuBtn && mobileDrawer) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileDrawer.classList.toggle('hidden');
+      });
+
+      // Close drawer when clicking any link
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileDrawer.classList.add('hidden');
+        });
+      });
+    }
+
+    // Custom Cursor (Desktop Only)
     const cursor = document.getElementById('cursor');
-    if (cursor) {
+    if (cursor && window.innerWidth >= 1024) {
       document.addEventListener('mousemove', (e) => {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
@@ -713,50 +750,52 @@
     document.addEventListener('click', (e) => {
       const ripple = document.createElement('div');
       ripple.className = 'click-ripple';
-      ripple.style.left = (e.pageX - 20) + 'px';
-      ripple.style.top = (e.pageY - 20) + 'px';
-      ripple.style.width = '40px';
-      ripple.style.height = '40px';
+      ripple.style.left = (e.pageX - 15) + 'px';
+      ripple.style.top = (e.pageY - 15) + 'px';
+      ripple.style.width = '30px';
+      ripple.style.height = '30px';
       document.body.appendChild(ripple);
-      setTimeout(() => ripple.remove(), 600);
+      setTimeout(() => ripple.remove(), 500);
     });
   </script>
 
-  <!-- 3D INTERACTIVE THREE.JS SCENE (MATCHING THE LOGO AESTHETIC) -->
+  <!-- 3D INTERACTIVE THREE.JS SCENE -->
   <script>
     const canvas = document.getElementById('three-canvas');
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 28;
+    camera.position.z = window.innerWidth < 768 ? 36 : 28;
 
     const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // 1. 3D Floating Geometry (Central Torus Knot representing dynamic growth)
-    const knotGeo = new THREE.TorusKnotGeometry(7.5, 2.2, 100, 16);
+    // 1. Central 3D Torus Knot
+    const knotRadius = window.innerWidth < 768 ? 5.5 : 7.5;
+    const knotGeo = new THREE.TorusKnotGeometry(knotRadius, 2.0, 90, 16);
     const knotMat = new THREE.MeshBasicMaterial({
-      color: 0x00c274, // Logo Emerald Green
+      color: 0x00c274,
       wireframe: true,
       transparent: true,
-      opacity: 0.22
+      opacity: 0.20
     });
     const knot = new THREE.Mesh(knotGeo, knotMat);
     scene.add(knot);
 
-    // 2. 3D Inner Navy Wireframe Sphere (representing the foundation 'X')
-    const sphereGeo = new THREE.SphereGeometry(9, 20, 20);
+    // 2. Inner Navy Wireframe Sphere
+    const sphereRadius = window.innerWidth < 768 ? 7.5 : 9.5;
+    const sphereGeo = new THREE.SphereGeometry(sphereRadius, 18, 18);
     const sphereMat = new THREE.MeshBasicMaterial({
-      color: 0x142b5c, // Deep Navy Blue
+      color: 0x142b5c,
       wireframe: true,
       transparent: true,
-      opacity: 0.15
+      opacity: 0.14
     });
     const navySphere = new THREE.Mesh(sphereGeo, sphereMat);
     scene.add(navySphere);
 
-    // 3. Floating 3D Star Particle Cloud (Glowing Green & Cyan dots)
-    const particleCount = 700;
+    // 3. Floating 3D Star Particle Cloud
+    const particleCount = window.innerWidth < 768 ? 350 : 650;
     const particlePositions = new Float32Array(particleCount * 3);
 
     for (let i = 0; i < particleCount * 3; i += 3) {
@@ -769,7 +808,7 @@
     particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
 
     const particleMat = new THREE.PointsMaterial({
-      size: 0.18,
+      size: window.innerWidth < 768 ? 0.22 : 0.18,
       color: 0x00e676,
       transparent: true,
       opacity: 0.65
@@ -778,29 +817,27 @@
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
 
-    // Mouse Tracking for Parallax
+    // Mouse & Touch Tracking
     let targetX = 0, targetY = 0;
     window.addEventListener('mousemove', (e) => {
-      targetX = (e.clientX - window.innerWidth / 2) * 0.0006;
-      targetY = (e.clientY - window.innerHeight / 2) * 0.0006;
+      targetX = (e.clientX - window.innerWidth / 2) * 0.0005;
+      targetY = (e.clientY - window.innerHeight / 2) * 0.0005;
     });
 
     // Animation Loop
     function animate() {
       requestAnimationFrame(animate);
 
-      // Rotate Knot and Sphere
-      knot.rotation.x += 0.002;
-      knot.rotation.y += 0.003;
+      knot.rotation.x += 0.0018;
+      knot.rotation.y += 0.0025;
 
       navySphere.rotation.x -= 0.001;
-      navySphere.rotation.y -= 0.002;
+      navySphere.rotation.y -= 0.0015;
 
-      particles.rotation.y += 0.0008;
+      particles.rotation.y += 0.0006;
 
-      // Parallax smooth interpolation
-      camera.position.x += (targetX * 25 - camera.position.x) * 0.04;
-      camera.position.y += (-targetY * 25 - camera.position.y) * 0.04;
+      camera.position.x += (targetX * 20 - camera.position.x) * 0.04;
+      camera.position.y += (-targetY * 20 - camera.position.y) * 0.04;
       camera.lookAt(scene.position);
 
       renderer.render(scene, camera);
@@ -809,26 +846,9 @@
 
     window.addEventListener('resize', () => {
       camera.aspect = window.innerWidth / window.innerHeight;
+      camera.position.z = window.innerWidth < 768 ? 36 : 28;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-  </script>
-
-  <!-- 3D PERSPECTIVE TILT SCRIPT (Vanilla Tilt Style for cards) -->
-  <script>
-    document.querySelectorAll('.tilt-target').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        const rotateX = -(y / (rect.height / 2)) * 10;
-        const rotateY = (x / (rect.width / 2)) * 10;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-      });
-
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-      });
     });
   </script>
 </body>
